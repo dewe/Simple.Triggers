@@ -1,3 +1,3 @@
-# Simple.Timer
+# Simple.Triggers
 
-Toying with simplest possible timer implementations, safe for server side use in asp.net.
+Toying with scheduling and triggers for server side use in .net.

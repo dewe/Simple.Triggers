@@ -7,8 +7,8 @@
     <ProjectGuid>{7DE8C05F-5194-447E-AA30-834B4ABA8D06}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simple.Timer</RootNamespace>
-    <AssemblyName>Simple.Timer</AssemblyName>
+    <RootNamespace>Simple.Triggers</RootNamespace>
+    <AssemblyName>Simple.Triggers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Schedule.cs" />
     <Compile Include="CacheTimer.cs" />
-    <Compile Include="ITimer.cs" />
+    <Compile Include="ISchedule.cs" />
+    <Compile Include="ITrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
