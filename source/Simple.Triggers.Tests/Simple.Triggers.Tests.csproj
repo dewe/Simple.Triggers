@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheTimerTests.cs" />
+    <Compile Include="MultiScheduleTests.cs" />
     <Compile Include="ScheduleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

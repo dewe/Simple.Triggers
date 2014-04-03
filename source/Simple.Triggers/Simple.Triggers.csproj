@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MultiSchedule.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="CacheTimer.cs" />
     <Compile Include="ISchedule.cs" />
