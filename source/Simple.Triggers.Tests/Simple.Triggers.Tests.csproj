@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LowResourceScheduleTests.cs" />
+    <Compile Include="LowResScheduleTests.cs" />
     <Compile Include="MultiScheduleTests.cs" />
     <Compile Include="ScheduleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

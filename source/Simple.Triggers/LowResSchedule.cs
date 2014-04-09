@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Runtime.Caching;
 
 namespace Simple.Triggers
@@ -7,11 +8,18 @@ namespace Simple.Triggers
     ///     Uses cache expiration as internal timer, executing at most
     ///     once every 20 second. Original idea from @_marcan.
     /// </summary>
-    public class LowResourceSchedule : ITrigger, ISchedule
+    public class LowResSchedule : ITrigger, ISchedule
     {
         private readonly ObjectCache _cache = MemoryCache.Default;
         private Action _task;
         private TimeSpan _timeSpan;
+
+        public LowResSchedule() : this(MemoryCache.Default) {}
+
+        public LowResSchedule(ObjectCache internalCache)
+        {
+            _cache = internalCache;
+        }
 
         public ITrigger Every(TimeSpan timeSpan)
         {
@@ -49,7 +57,19 @@ namespace Simple.Triggers
 
         private void ExecuteTask()
         {
-            _task();
+            if (_task == null)
+            {
+                return;
+            }
+
+            try
+            {
+                _task();                
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e.ToString());
+            }
         }
     }
 }

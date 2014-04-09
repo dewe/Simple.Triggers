@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="MultiSchedule.cs" />
     <Compile Include="Schedule.cs" />
-    <Compile Include="LowResourceSchedule.cs" />
+    <Compile Include="LowResSchedule.cs" />
     <Compile Include="ISchedule.cs" />
     <Compile Include="ITrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
