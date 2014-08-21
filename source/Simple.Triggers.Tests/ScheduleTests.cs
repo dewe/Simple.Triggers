@@ -17,7 +17,17 @@ namespace Simple.Triggers.Tests
         }
 
         [Test]
-        public void It_should_wait_set_amount_of_time()
+        public void It_should_trigger_action()
+        {
+            _schedule
+                .Every(TimeSpan.FromMilliseconds(100))
+                .Action(() => _counter++);
+
+            Assert.That(() => _counter, Is.GreaterThan(2).After(500, 50));
+        }
+
+        [Test]
+        public void It_should_wait_before_trigger_action()
         {
             _schedule
                 .Every(TimeSpan.FromMilliseconds(100))
@@ -25,16 +35,6 @@ namespace Simple.Triggers.Tests
 
             Assert.That(() => _counter, Is.EqualTo(0).After(50, 50));
             Assert.That(() => _counter, Is.EqualTo(1).After(150, 50));
-        }
-
-        [Test]
-        public void It_should_trigger_repeatedly()
-        {
-            _schedule
-                .Every(TimeSpan.FromMilliseconds(100))
-                .Action(() => _counter++);
-
-            Assert.That(() => _counter, Is.GreaterThan(2).After(500, 50));
         }
 
         [Test]
@@ -49,6 +49,23 @@ namespace Simple.Triggers.Tests
                 });
 
             Assert.That(() => _counter, Is.GreaterThan(2).After(500, 50));
+        }
+
+        [Test]
+        public void It_should_not_care_about_order_of_methods_called()
+        {
+            // call Action() before Every()
+            _schedule
+                .Action(() => _counter++)
+                .Every(TimeSpan.FromMilliseconds(100));
+
+            Assert.That(() => _counter, Is.GreaterThan(2).After(500, 50));
+        }
+
+        [Test]
+        public void It_should_handle_null_action()
+        {
+            _schedule.Every(TimeSpan.FromMilliseconds(1));
         }
 
         [TearDown]

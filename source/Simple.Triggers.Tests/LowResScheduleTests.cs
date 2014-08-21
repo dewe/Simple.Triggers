@@ -9,6 +9,8 @@ namespace Simple.Triggers.Tests
     [TestFixture]
     public class LowResScheduleTests
     {
+        private LowResSchedule _schedule;
+        
         [SetUp]
         public void SetupWithMockInternals()
         {
@@ -20,22 +22,6 @@ namespace Simple.Triggers.Tests
                     policy.RemovedCallback(null)));
 
             _schedule = new LowResSchedule(internalCache);
-        }
-
-        private LowResSchedule _schedule;
-
-        [Test]
-        public void It_should_continue_despite_action_fail()
-        {
-            int counter = 0;
-
-            _schedule.Every(TimeSpan.FromMilliseconds(1)).Action(() =>
-            {
-                counter++;
-                throw new Exception();
-            });
-
-            Assert.That(() => counter, Is.GreaterThan(2).After(100, 10));
         }
 
         [Test]
@@ -54,6 +40,20 @@ namespace Simple.Triggers.Tests
 
             // Internal timer frequency is 20s.
             Assert.That(() => wasCalled, Is.EqualTo(true).After(21000, 100));
+        }
+
+        [Test]
+        public void It_should_continue_despite_action_fail()
+        {
+            int counter = 0;
+
+            _schedule.Every(TimeSpan.FromMilliseconds(1)).Action(() =>
+            {
+                counter++;
+                throw new Exception();
+            });
+
+            Assert.That(() => counter, Is.GreaterThan(2).After(100, 10));
         }
     }
 }

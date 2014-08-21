@@ -4,6 +4,6 @@ namespace Simple.Triggers
 {
     public interface ITrigger
     {
-        void Action(Action task);
+        ISchedule Action(Action task);
     }
 }

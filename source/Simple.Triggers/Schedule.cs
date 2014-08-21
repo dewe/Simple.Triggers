@@ -16,9 +16,10 @@ namespace Simple.Triggers
             return this;
         }
 
-        public void Action(Action task)
+        public ISchedule Action(Action task)
         {
             _task = task;
+            return this;
         }
 
         private void SetTimer()
